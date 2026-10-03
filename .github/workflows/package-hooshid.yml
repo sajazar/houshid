@@ -1,0 +1,17 @@
+name: Package Hooshid WordPress Plugin
+on:
+  push:
+    branches: [hooshid-wordpress]
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package plugin
+        run: |
+          cd wordpress-plugin
+          zip -qr ../hooshid-wordpress-1.1.0.zip hooshid
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hooshid-wordpress-1.1.0
+          path: hooshid-wordpress-1.1.0.zip
